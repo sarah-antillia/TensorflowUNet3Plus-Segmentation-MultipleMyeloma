@@ -323,6 +323,7 @@ The val_loss is also very low as shown below from the beginning of the training.
 We have tried to infer the segmented region for <b>mini_test</b> dataset, which is a very small dataset including only 
 ten images extracted from <b>test</b> dataset,
  by using our Pretrained MultipleMyeloma Model.<br>
+Please run the following infer bat file.<br>
 <pre>
 >3.infer.bat
 </pre>
@@ -344,7 +345,7 @@ ten images extracted from <b>test</b> dataset,
 <h2>
 6 Tiled-Image-Segmentation 
 </h2>
-
+Please run the following tiled_infer bat file.<br>
 <pre>
 >4.tiled_infer.bat
 </pre>
