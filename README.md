@@ -226,7 +226,7 @@ to avoid memory allocation error.<br>
     print("--- filters {}".format(filters))
     
 
-    # 2023/06/29 Modified activate function to from softmax to sigmoid 
+    # 2023/06/29 Modified activate function from softmax to sigmoid 
     #output = k.activations.softmax(d)
     output = tf.keras.layers.Activation(activation='sigmoid')(d)
 
