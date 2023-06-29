@@ -361,6 +361,8 @@ Please run the following tiled_infer bat file.<br>
 <b>Tiled Inferred images (4k_tiled_mini_test_output)</b><br>
 <img src="./asset/4k_tiled_mini_test_output.png" width="1024" height="auto"><br>
 <br>
+On classic UNet Tiled-Image-Segmentation of Multiple-Myeloma, please see also:<br>
+<a href="https://github.com/atlan-antillia/Tiled-Image-Segmentation-Multiple-Myeloma">Tiled-Image-Segmentation-Multiple-Myeloma</a>
 <br>
 <!--
 -->
