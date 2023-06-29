@@ -358,7 +358,6 @@ ten images extracted from <b>test</b> dataset,
 <br>
 
 <b>Tiled Inferred images (4k_tiled_mini_test_tiled_output)</b><br>
-Some white polyp regions in the original images of the mini_test dataset above have been detected as shown below.
 <img src="./asset/4k_tiled_mini_test_output.png" width="1024" height="auto"><br>
 <br>
 <br>
