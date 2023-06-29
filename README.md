@@ -61,7 +61,7 @@ CC BY-NC-SA 4.0
 </h2>
 
 <h2>
-2. Install Tiled-Image-Segmentation-Multiple-Myeloma
+2. Install TensorflowUNet3Plu-Segmentation-MultipleMyeloma
 </h2>
 <h3>2.1 Clone repository</h3>
 Please clone TensorflowUNet3Plus-Segmentation-MultipleMyeloma in the working folder <b>c:\google</b>.<br>
@@ -369,8 +369,6 @@ Some white polyp regions in the original images of the mini_test dataset above h
 <h3>
 References
 </h3>
-
-
 <b>1. SegPC-2021-dataset</b><br>
 SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images<br>
 <pre>
