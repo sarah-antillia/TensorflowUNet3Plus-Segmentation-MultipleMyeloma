@@ -358,7 +358,7 @@ Please run the following tiled_infer bat file.<br>
 <img src="./asset/4k_mini_test.png" width="1024" height="auto"><br>
 <br>
 
-<b>Tiled Inferred images (4k_tiled_mini_test_tiled_output)</b><br>
+<b>Tiled Inferred images (4k_tiled_mini_test_output)</b><br>
 <img src="./asset/4k_tiled_mini_test_output.png" width="1024" height="auto"><br>
 <br>
 <br>
