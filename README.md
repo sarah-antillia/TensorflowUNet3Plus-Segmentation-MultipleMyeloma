@@ -1,5 +1,5 @@
 <h2>
-TensorflowUNet3Plus-Segmentation-MultipleMyeloma (Updated: 2023/06/30)
+TensorflowUNet3Plus-Segmentation-MultipleMyeloma (Updated: 2023/07/01)
 </h2>
 This is an experimental project to detect <b>MultipleMyeloma</b> 
 by using <a href="./TensorflowUNet3Plus.py">TensorflowUNet3Plus</a> Model,
@@ -54,7 +54,11 @@ License
 CC BY-NC-SA 4.0
 </pre>
 
-
+<ul>
+<li>
+2023/07/01 Modified to use Overlapped-Tiled-Image-Segmentation to lessen BatchNormalization impact.
+</li>
+</ul>
 
 <h2>
 2 Prepare dataset
@@ -366,7 +370,31 @@ On classic UNet Tiled-Image-Segmentation of Multiple-Myeloma, please see also:<b
 <br>
 <!--
 -->
+<h2>
+7 Overlapped-Tiled-Image-Segmentation 
+</h2>
+To lessen BatchNormalization adverse effects in Tiled-Image-Segmentation, we have used <b>Overlapped-Tiled-Image-Segmentation</b> method,
+which is literally a way to split a large image into a lot of pieces of overlapped tiled images.<br>
+We have added <b>overlapping</b> property in [tiledinfer] section of <b>train_eval_infer.config</b> file as shown below.<br>
+<pre>
+[tiledinfer]
+overlapping = 32
+</pre>
+Furthermore, we have modified <b>infer_tiles</b> method in <a href="./TensorflowUNet.py">TensorflowUNet</a> classs to support overlapping property.<br>
+Please run the following tiled_infer bat file by using a train_eval_infer.config file including overlapping property.<br>
+<pre>
+>4.tiled_infer.bat
+</pre>
+, which simply runs the following command.<br>
+<pre>
+>python ../../TensorflowUNet3PlusTiledInferencer.py train_eval_infer.config
+</pre>
 
+<b>Tiled Inferred images (4k_tiled_mini_test_output)</b><br>
+<img src="./asset/4k_tiled_mini_test_output_overlapped.png" width="1024" height="auto"><br>
+<br>
+<!--
+-->
 
 <h3>
 References

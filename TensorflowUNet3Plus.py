@@ -125,10 +125,9 @@ class TensorflowUNet3Plus(TensorflowUNet):
     
     learning_rate  = self.config.get(MODEL, "learning_rate")
     clipvalue      = self.config.get(MODEL, "clipvalue", 0.2)
-
     self.optimizer = Adam(learning_rate = learning_rate, 
          beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, 
-         #clipvalue=clipvalue,  #2023/0626
+         clipvalue=clipvalue,  #2023/06/30
          amsgrad=False)
     print("=== Optimizer Adam learning_rate {} clipvalue {}".format(learning_rate, clipvalue))
     
@@ -171,7 +170,7 @@ class TensorflowUNet3Plus(TensorflowUNet):
     """ Custom function for conv2d:
         Apply  3*3 convolutions with BN and relu.
     """
-
+    normalization = False
     for i in range(1, n + 1):
         x = k.layers.Conv2D(filters=kernels, kernel_size=kernel_size,
                             padding=padding, strides=strides,

@@ -399,14 +399,18 @@ class TensorflowUNet:
   # 1 Split the orginal image to some tiled-images
   # 2 Infer segmentation regions on those images 
   # 3 Merge detected regions into one image
-  
+  # 2023/07/01
+  # Added MARGIN to cropping 
+
   def infer_tiles(self, input_dir, output_dir, expand=True):
     
     image_files  = glob.glob(input_dir + "/*.png")
     image_files += glob.glob(input_dir + "/*.jpg")
     image_files += glob.glob(input_dir + "/*.tif")
     image_files += glob.glob(input_dir + "/*.bmp")
-
+    MARGIN       = self.config.get(TILEDINFER, "overlapping", dvalue=0)
+    print("MARGIN {}".format(MARGIN))
+    
     merged_dir   = None
     try:
       merged_dir = self.config.get(TILEDINFER, "merged_dir")
@@ -418,7 +422,7 @@ class TensorflowUNet:
       pass
     split_size  = self.config.get(MODEL, "image_width")
     print("---split_size {}".format(split_size))
-
+    
     for image_file in image_files:
       image = Image.open(image_file)
       w, h  = image.size
@@ -430,10 +434,15 @@ class TensorflowUNet:
       horiz_split_num = w // split_size
       if w % split_size != 0:
         horiz_split_num += 1
-      background   = Image.new("L", (w, h))
+
+      bgcolor = self.config.get(TILEDINFER, "background", dvalue=0)  
+      print("=== bgcolor {}".format(bgcolor))
+      background = Image.new("L", (w, h), bgcolor)
       #print("=== width {} height {}".format(w, h))
       #print("=== horiz_split_num {}".format(horiz_split_num))
       #print("=== vert_split_num  {}".format(vert_split_num))
+      #input("----")
+  
       #input("----")
       for j in range(vert_split_num):
         for i in range(horiz_split_num):
@@ -445,25 +454,30 @@ class TensorflowUNet:
           if left >=w or upper >=h:
             continue 
       
-          cropped = image.crop((left, upper, right, lower))
+          #cropped = image.crop((left, upper, right, lower))
+          #2023/06/21
+          cropped = image.crop((left-MARGIN, upper-MARGIN, right+MARGIN, lower+MARGIN ))
+          cw, ch  = cropped.size
           cropped = cropped.resize((split_size, split_size))
           predictions = self.predict([cropped], expand=expand)
           prediction  = predictions[0]
           mask        = prediction[0]    
 
           img         = self.mask_to_image(mask)
+          img         = img.resize((cw, ch))
+
           img         = img.convert("L")
-          #blurred     = img.filter(filter=ImageFilter.BLUR)
+          #2023/06/21
+          ww, hh      = img.size
+          img         = img.crop((MARGIN, MARGIN, ww-MARGIN, hh-MARGIN))
+          ww, hh      = img.size
           background.paste(img, (left, upper))
-          #print("---paste j:{} i:{}".format(j, i))
-          #input("HHHIT")  
+          print("---paste j:{} i:{} ww:{} hh:{}".format(j, i, ww, hh))
+          
       basename = os.path.basename(image_file)
       output_file = os.path.join(output_dir, basename)
       #input("----")
       #background = background.filter(filter=ImageFilter.BLUR)
-      invert = self.config.get(TILEDINFER, "invert", False)
-      if invert:
-        background = ImageOps.invert(background)
       background.save(output_file)
       
       if merged_dir !=None:
@@ -471,11 +485,12 @@ class TensorflowUNet:
         img   = np.array(image)
         img   = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         mask  = np.array(background)
-        mask  = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+        mask   = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
         img += mask
 
         merged_file = os.path.join(merged_dir, basename)
         cv2.imwrite(merged_file, img)     
+
 
   def mask_to_image(self, data, factor=255.0):
     h = data.shape[0]
