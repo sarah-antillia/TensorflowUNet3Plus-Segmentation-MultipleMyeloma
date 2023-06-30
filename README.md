@@ -389,12 +389,18 @@ Please run the following tiled_infer bat file by using a train_eval_infer.config
 <pre>
 >python ../../TensorflowUNet3PlusTiledInferencer.py train_eval_infer.config
 </pre>
-
-<b>Tiled Inferred images (4k_tiled_mini_test_output)</b><br>
+<b>Input images (4k_mini_test)(4K Images) </b><br>
+<img src="./asset/4k_mini_test.png" width="1024" height="auto"><br>
+<br>
+<b>Overlapped-Tiled-Image-Segmentation:Inferred images (4k_tiled_mini_test_output)</b><br>
 <img src="./asset/4k_tiled_mini_test_output_overlapped.png" width="1024" height="auto"><br>
 <br>
-<!--
--->
+
+Please see also:<br>
+Systematic Evaluation of Image Tiling Adverse Effects on Deep Learning Semantic Segmentation<br>
+<pre>
+https://www.frontiersin.org/articles/10.3389/fnins.2020.00065/full
+</pre>
 
 <h3>
 References
@@ -452,4 +458,9 @@ https://arxiv.org/ftp/arxiv/papers/2004/2004.08790.pdf
 https://github.com/hamidriasat/UNet-3-Plus/blob/unet3p_lits/models/unet3plus.py
 </pre>
 
-
+<b>5. Systematic Evaluation of Image Tiling Adverse Effects on Deep Learning Semantic Segmentation</b><br>
+G. Anthony Reina1, Ravi Panchumarthy, Siddhesh Pravin Thakur, <br>
+Alexei Bastidas1 and Spyridon Bakas<br>
+<pre>
+https://www.frontiersin.org/articles/10.3389/fnins.2020.00065/full</pre>
+<br>
