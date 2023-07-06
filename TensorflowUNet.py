@@ -163,6 +163,7 @@ class TensorflowUNet:
 
   def create(self, num_classes, image_height, image_width, image_channels,
             base_filters = 16, num_layers = 5):
+    print("=== TensorflowUNet.create ==============================")
     # inputs
     print("Input image_height {} image_width {} image_channels {}".format(image_height, image_width, image_channels))
     inputs = Input((image_height, image_width, image_channels))
@@ -510,6 +511,13 @@ class TensorflowUNet:
     print("Test accuracy:{}".format(round(score[1], 4)))
      
     
+
+  def inspect(self, image_file='./model.png'):
+    # Please download and install graphviz for your OS
+    # https://www.graphviz.org/download/ 
+    tf.keras.utils.plot_model(self.model, to_file=image_file, show_shapes=True)
+    print("=== Saved model graph as an image_file {}".format(image_file))
+
 if __name__ == "__main__":
 
   try:
