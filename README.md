@@ -1,5 +1,5 @@
 <h2>
-TensorflowUNet3Plus-Segmentation-MultipleMyeloma (Updated: 2023/07/01)
+TensorflowUNet3Plus-Segmentation-MultipleMyeloma (Updated: 2023/07/06)
 </h2>
 This is an experimental project to detect <b>MultipleMyeloma</b> 
 by using <a href="./TensorflowUNet3Plus.py">TensorflowUNet3Plus</a> Model,
@@ -464,3 +464,15 @@ Alexei Bastidas1 and Spyridon Bakas<br>
 <pre>
 https://www.frontiersin.org/articles/10.3389/fnins.2020.00065/full</pre>
 <br>
+
+<br>
+
+<h2>Appendix </h2>
+
+To inspect TensorflowSwinNet Model structure, please move to <b>./projects/MultipleMyeloma</b>,
+ and run the followin bat file.<br>
+<pre>
+>model_inspect.bat
+</pre>
+<img src= "./projects/MultipleMyeloma/model.png" width="720", height="auto"><br>
+
